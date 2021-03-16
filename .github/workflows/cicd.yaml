@@ -57,7 +57,7 @@ jobs:
             --from-literal=DB_DATABASE=${{ secrets.DB_DATABASE }} 
             --from-literal=DB_USERNAME=${{ secrets.DB_USERNAME }} 
             --from-literal=DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            --from-literal=DB_HOST=postgres.${{ env.NAMESPACE }}.svc.cluster.local
+            --from-literal=DB_HOST=postgres-postgresql.${{ env.NAMESPACE }}.svc.cluster.local
             --from-literal=JWT_SECRET=${{ secrets.JWT_SECRET }}
           secret-name: jira-clone-secret
       - uses: azure/k8s-deploy@v1
