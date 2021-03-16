@@ -7,7 +7,7 @@ COPY tsconfig*.* ./
 
 RUN npm ci
 
-COPY . .
+COPY . ./
 
 EXPOSE 3000
 
