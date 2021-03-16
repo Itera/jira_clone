@@ -26,12 +26,15 @@ const Project = () => {
   if (!data) return <PageLoader />;
   if (error) return <PageError />;
 
-  const { project } = data;
+  let { project } = data;
+
+  if (!project)
+    project = {};
 
   const updateLocalProjectIssues = (issueId, updatedFields) => {
     setLocalData(currentData => ({
       project: {
-        ...currentData.project,
+        ...currentData.project || {},
         issues: updateArrayItemById(currentData.project.issues, issueId, updatedFields),
       },
     }));

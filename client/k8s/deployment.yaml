@@ -1,0 +1,21 @@
+webVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira-clone-web
+  labels:
+    app: jira-clone-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jira-clone-web
+  template:
+    metadata:
+      labels:
+        app: jira-clone-web
+    spec:
+      containers:
+      - name: jira-clone-web
+        image: itemadacr.azurecr.io/jira-clone-web:latest
+        ports:
+          - containerPort: 3001

@@ -29,6 +29,9 @@ const ProjectBoard = ({ project, fetchProject, updateLocalProjectIssues }) => {
 
   const [filters, mergeFilters] = useMergeState(defaultFilters);
 
+  if (!project)
+    project = {};
+
   return (
     <Fragment>
       <Breadcrumbs items={['Projects', project.name, 'Kanban Board']} />

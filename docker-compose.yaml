@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: jiradb
+    ports: 
+      - '5432:5432'
+    volumes:
+      - api-db:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: api/
+    environment:
+      NODE_ENV: production
+      DB_DATABASE: jiradb
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+      JWT_SECRET: dev1234
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+
+  web:
+    build:
+      context: client/
+    environment:
+      NODE_ENV: production
+      API_URL: http://api:3000
+    depends_on:
+      - api
+    ports:
+      - '3001:3001'
+        
+volumes:
+  api-db:

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jira-clone-api
+  labels:
+    app: jira-clone-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jira-clone-api
+  template:
+    metadata:
+      labels:
+        app: jira-clone-api
+    spec:
+      containers:
+      - name: jira-clone-api
+        image: itemadacr.azurecr.io/jira-clone-api:latest
+        ports:
+          - containerPort: 3000
+        envFrom:
+        - secretRef:
+            name: jira-clone-secret

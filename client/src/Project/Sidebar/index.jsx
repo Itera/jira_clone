@@ -24,6 +24,9 @@ const propTypes = {
 const ProjectSidebar = ({ project }) => {
   const match = useRouteMatch();
 
+  if (!project)
+    project = {};
+
   return (
     <Sidebar>
       <ProjectInfo>
