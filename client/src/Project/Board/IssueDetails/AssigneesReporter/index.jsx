@@ -53,18 +53,23 @@ const ProjectBoardIssueDetailsAssigneesReporter = ({ issue, updateIssue, project
   );
 };
 
-const renderUser = (user, isSelectValue, removeOptionValue) => (
-  <User
-    key={user.id}
-    isSelectValue={isSelectValue}
-    withBottomMargin={!!removeOptionValue}
-    onClick={() => removeOptionValue && removeOptionValue()}
-  >
-    <Avatar avatarUrl={user.avatarUrl} name={user.name} size={24} />
-    <Username>{user.name}</Username>
-    {removeOptionValue && <Icon type="close" top={1} />}
-  </User>
-);
+const renderUser = (user, isSelectValue, removeOptionValue) => {
+  if (!user)
+    user = {};
+  
+  return (
+    <User
+      key={user.id}
+      isSelectValue={isSelectValue}
+      withBottomMargin={!!removeOptionValue}
+      onClick={() => removeOptionValue && removeOptionValue()}
+    >
+      <Avatar avatarUrl={user.avatarUrl} name={user.name} size={24} />
+      <Username>{user.name}</Username>
+      {removeOptionValue && <Icon type="close" top={1} />}
+    </User>
+  );
+}
 
 ProjectBoardIssueDetailsAssigneesReporter.propTypes = propTypes;
 

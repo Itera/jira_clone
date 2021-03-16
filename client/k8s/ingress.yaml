@@ -1,0 +1,20 @@
+webVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jira-clone-web
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: jira-clone.mad.itera.no
+    http:
+      paths:
+        - backend:
+            serviceName: jira-clone-web
+            servicePort: 3001
+          path: /
+  tls:
+  - hosts:
+    - jira-clone.mad.itera.no
+    secretName: jira-clone-web-tls-secret
