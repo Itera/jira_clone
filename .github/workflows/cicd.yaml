@@ -85,6 +85,7 @@ jobs:
           login-server: ${{ env.REGISTRY_NAME }}
           username: ${{ secrets.MAD_DOCKER_PUSH_USERNAME }}
           password: ${{ secrets.MAD_DOCKER_PUSH_PASSWORD }}
+      - run: sed -i 's/http:\/\/localhost:3000/https:\/\/jira-clone-api.mad.itera.no/' ./client/webpack.config.production.js
       # Container build and push to a Azure Container registry (ACR)
       - run: |
           docker build ./client/ -t ${{ env.REGISTRY_NAME }}/${{ env.APP_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_NAME }}/${{ env.APP_NAME }}:latest
